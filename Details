@@ -1,0 +1,63 @@
+https://www.kindsonthegenius.com/spring-boot/jwtjson-web-token-with-springboot-step-by-step-tutorial-part-1/
+https://www.kindsonthegenius.com/spring-boot/jwtjson-web-token-with-springboot-step-by-step-tutorial-part-2/
+
+Packages:
+
+1. Controller package
+2. Service package
+3. Repository package.
+4. Model package
+5. Custom Security package
+
+Models:
+	Item: itemId, item name, quantity and description
+	User: user name, name, password
+	
+Repository:
+	Item Repository
+	
+Service:
+
+	Item Service: For performing operations on the database.
+		1. Get all items 
+			a. It is not authenticated end point
+			b. If items present sends all or else sends message item not found.
+		2. Get item by id 
+			a. It is authenticated
+			b. If item id is not found it gives 404 error and if present sends back the item.
+		3. Add new item
+			a. It is authenticated end point
+			b. We can add new item here.After adding status code OK.
+			
+	User Service: Registration purpose. Items are not associated with users.
+		1. Create a user
+			a. It is not authenticated
+		2. Login 
+			a. Gives 404 error if not a valid user
+			b. Gives JWT Token on success.
+			c. It is not authenticated end point
+
+Custom Security:
+
+	https://medium.com/geekculture/spring-security-authentication-process-authentication-flow-behind-the-scenes-d56da63f04fa
+	
+
+	Custom Security Configuration: Override the default authentication and authorization.
+	
+	Custom User Details: Override the default authentication mechanism
+	
+
+If we don't use JWT, each authenticated end point we need to do login again and again.
+
+By default there will be one filter for all the authenticated end points. It is the login filter.
+We need to override that filter by creating our own JWT filter.
+
+	https://medium.com/codex/how-to-set-basic-authentication-for-api-endpoints-in-spring-boot-9cd8c79d26a2
+	
+JWTFilter - Custom filter and it uses JWT token in the header and verify them
+
+How it checks logged in:
+	It checks the current Security Context whether it is valid or not 
+
+
+			
